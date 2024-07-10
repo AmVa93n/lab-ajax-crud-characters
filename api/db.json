@@ -6,6 +6,20 @@
       "occupation": "Lives under the sea",
       "weapon": "Crabby Patty",
       "cartoon": true
+    },
+    {
+      "id": "0b0f",
+      "name": "Amir",
+      "occupation": "WebDev",
+      "weapon": "VSC",
+      "cartoon": false
+    },
+    {
+      "name": "Daenerys",
+      "occupation": "Queen of Meereen",
+      "weapon": "Dragon",
+      "cartoon": true,
+      "id": "85a4"
     }
   ]
 }

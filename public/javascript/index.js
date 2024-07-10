@@ -1,6 +1,8 @@
 const charactersAPI = new APIHandler('http://localhost:8000');
 const charContainer = document.getElementsByClassName("characters-container")[0]
 const deleteButton = document.getElementById('delete-one')
+const editButton = document.getElementById('edit-btn')
+const newButton = document.getElementById('new-btn')
 
 window.addEventListener('load', () => {
   document.getElementById('fetch-all').addEventListener('click', function (event) {
@@ -47,19 +49,41 @@ window.addEventListener('load', () => {
       })
       .catch((error) => {
         deleteButton.style.backgroundColor = "red"
-        }
-      )
+        })
   });
 
   document.getElementById('edit-character-form').addEventListener('submit', function (event) {
     event.preventDefault()
+    const characterId = document.getElementById('edit-id').value
+    const characterInfo = {
+      name: document.getElementById("edit-name").value,
+      occupation: document.getElementById("edit-occupation").value,
+      weapon: document.getElementById("edit-weapon").value,
+      cartoon: document.getElementById("edit-cartoon").checked,
+    };
     charactersAPI.updateOneRegister(characterId, characterInfo)
-      .then((response) => {console.log(response.data)})
+    .then((response) => {
+      editButton.style.backgroundColor = "green"
+    })
+    .catch((error) => {
+      editButton.style.backgroundColor = "red"
+      })
   });
 
   document.getElementById('new-character-form').addEventListener('submit', function (event) {
     event.preventDefault()
+    const characterInfo = {
+      name: document.getElementById("new-name").value,
+      occupation: document.getElementById("new-occupation").value,
+      weapon: document.getElementById("new-weapon").value,
+      cartoon: document.getElementById("new-cartoon").checked,
+    };
     charactersAPI.createOneRegister(characterInfo)
-      .then((response) => {console.log(response.data)})
+    .then((response) => {
+      newButton.style.backgroundColor = "green"
+    })
+    .catch((error) => {
+      newButton.style.backgroundColor = "red"
+      })
   });
 });
